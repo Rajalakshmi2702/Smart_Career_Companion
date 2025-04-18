@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-Time Job Market Insights</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+  <div class="container mt-5">
+    <h2 class="text-center text-primary">Real-Time Job Market Insights</h2>
+    
+    <!-- Filter Form -->
+    <form method="get" action="{{ url_for('job_market') }}" class="mb-4">
+      <div class="row">
+        <!-- Countries Dropdown -->
+        <div class="col-md-4">
+          <label for="country" class="form-label">Country:</label>
+          <select name="country" id="country" class="form-select">
+            <option value="">All</option>
+            <option value="US" {% if selected_country == "US" %}selected{% endif %}>USA</option>
+            <option value="UK" {% if selected_country == "UK" %}selected{% endif %}>United Kingdom</option>
+            <option value="CA" {% if selected_country == "CA" %}selected{% endif %}>Canada</option>
+            <option value="AU" {% if selected_country == "AU" %}selected{% endif %}>Australia</option>
+            <option value="IN" {% if selected_country == "IN" %}selected{% endif %}>India</option>
+            <option value="DE" {% if selected_country == "DE" %}selected{% endif %}>Germany</option>
+            <option value="FR" {% if selected_country == "FR" %}selected{% endif %}>France</option>
+            <option value="NL" {% if selected_country == "NL" %}selected{% endif %}>Netherlands</option>
+            <option value="SG" {% if selected_country == "SG" %}selected{% endif %}>Singapore</option>
+            <option value="BR" {% if selected_country == "BR" %}selected{% endif %}>Brazil</option>
+          </select>
+        </div>
+        <!-- Domains Dropdown -->
+        <div class="col-md-4">
+          <label for="domain" class="form-label">Domain:</label>
+          <select name="domain" id="domain" class="form-select">
+            <option value="">All</option>
+            <option value="IT" {% if selected_domain == "IT" %}selected{% endif %}>Information Technology</option>
+            <option value="Finance" {% if selected_domain == "Finance" %}selected{% endif %}>Finance</option>
+            <option value="Healthcare" {% if selected_domain == "Healthcare" %}selected{% endif %}>Healthcare</option>
+            <option value="Education" {% if selected_domain == "Education" %}selected{% endif %}>Education</option>
+            <option value="Manufacturing" {% if selected_domain == "Manufacturing" %}selected{% endif %}>Manufacturing</option>
+            <option value="Retail" {% if selected_domain == "Retail" %}selected{% endif %}>Retail</option>
+            <option value="Marketing" {% if selected_domain == "Marketing" %}selected{% endif %}>Marketing</option>
+            <option value="Hospitality" {% if selected_domain == "Hospitality" %}selected{% endif %}>Hospitality</option>
+            <option value="Logistics" {% if selected_domain == "Logistics" %}selected{% endif %}>Logistics</option>
+            <option value="Energy" {% if selected_domain == "Energy" %}selected{% endif %}>Energy</option>
+          </select>
+        </div>
+        <div class="col-md-4 d-flex align-items-end">
+          <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Trending Jobs Section -->
+    <h3 class="mt-4">Trending Jobs</h3>
+    {% if jobs %}
+      <div class="list-group">
+        {% for job in jobs %}
+          <a href="{{ job.job_apply_link if job.job_apply_link is defined else '#' }}" target="_blank" class="list-group-item list-group-item-action">
+            <strong>{{ job.job_title }}</strong> at {{ job.employer_name }} ({{ job.job_city }})
+            {% if job.job_apply_link %}
+              <span class="badge bg-success">Apply Now</span>
+            {% endif %}
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>No job data available.</p>
+    {% endif %}
+
+    <!-- In-Demand Skills Section -->
+    <h3 class="mt-4">Top In-Demand Skills</h3>
+    <ul class="list-group">
+      {% for skill, count in skills %}
+        <li class="list-group-item">{{ skill }} ({{ count }} mentions)</li>
+      {% endfor %}
+    </ul>
+
+    <!-- Salary Benchmarks Section -->
+    <h3 class="mt-4">Salary Benchmarks</h3>
+    {% if salary.error %}
+      <p class="lead text-danger">{{ salary.error }}</p>
+    {% else %}
+      <p class="lead">Average Salary: ${{ salary.average_salary | round(2) }}</p>
+    {% endif %}
+
+    <!-- Back to Dashboard Button -->
+    <div class="mt-4 text-center">
+      <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+  </div>
+</body>
+</html>

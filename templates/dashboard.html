@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Competency Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    /* Overall styling and background */
+    body {
+      background: linear-gradient(135deg, #4b2c74, #6d3c8b);
+      font-family: 'Arial', sans-serif;
+      color: white;
+    }
+
+    /* Navbar styling */
+    .navbar {
+      background: linear-gradient(135deg, #5c3b91, #6a48a2);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .navbar-brand {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #fff !important;
+    }
+    .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .nav-link:hover {
+      color: #e7b319 !important;
+    }
+
+    /* Dashboard container styling */
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      margin-top: 40px;
+      text-align: center;
+    }
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: white;
+    }
+    p {
+      font-size: 1.2rem;
+      color: white;
+    }
+
+    /* Feature card styles */
+    .feature-card {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    .feature-card i {
+      font-size: 2.5rem;
+      color: #ffdf7e;
+    }
+    .feature-card h5 {
+      font-size: 1.4rem;
+      color: white;
+      margin-top: 10px;
+    }
+    .btn-feature {
+      background: #ffdf7e;
+      color: #4b2c74;
+      font-weight: bold;
+      border: none;
+      margin-top: 10px;
+    }
+    .btn-feature:hover {
+      background: #fb8846;
+      color: #351c50;
+    }
+
+    /* Footer styling */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #351c50;
+      color: white;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Smart Competency Platform</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/resume/download">Download Resume</a></li>
+          <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard Content -->
+  <div class="container mt-4">
+    <h2>Welcome, {{ user.name }}</h2>
+    <p>Email: {{ user.email }}</p>
+    <p>Enhance your career with our AI-powered tools.</p>
+
+    <div class="row mt-4">
+      <!-- Resume Automation -->
+      <div class="col-md-4 mb-4">
+        <div class="feature-card">
+          <i class="fas fa-file-alt"></i>
+          <h5>Resume Automation</h5>
+          <a href="{{ url_for('create_resume') }}" class="btn btn-feature">Go</a>
+        </div>
+      </div>
+
+      <!-- Resume Score Generator -->
+      <div class="col-md-4 mb-4">
+        <div class="feature-card">
+          <i class="fas fa-star"></i>
+          <h5>Resume Score Generator</h5>
+          <a href="{{ url_for('resume_score') }}" class="btn btn-feature">Go</a>
+        </div>
+      </div>
+
+      <!-- Job Recommendation -->
+      <div class="col-md-4 mb-4">
+        <div class="feature-card">
+          <i class="fas fa-briefcase"></i>
+          <h5>Job Recommendation</h5>
+          <a href="{{ url_for('job_recommendation') }}" class="btn btn-feature">Go</a>
+
+        </div>
+      </div>
+
+      <!-- Skill Gap Analysis -->
+      <div class="col-md-4 mb-4">
+        <div class="feature-card">
+          <i class="fas fa-chart-line"></i>
+          <h5>Skill Gap Analysis</h5>
+          <a href="{{ url_for('skill_gap_analysis') }}" class="btn btn-feature">Go</a>
+        </div>
+      </div>
+
+     <!-- Career Catalyst Chatbot -->
+<div class="col-md-4 mb-4">
+  <div class="feature-card text-center">
+    <i class="fas fa-user-tie fa-3x mb-2"></i>
+    <h5>Career Catalyst Chatbot</h5>
+    <a href="{{ url_for('career_main') }}" class="btn btn-feature mt-3">Go</a>
+  </div>
+</div>
+
+
+
+      <!-- Badges & Certificates -->
+      <div class="col-md-4 mb-4">
+        <div class="feature-card">
+          <i class="fas fa-medal"></i>
+          <h5>Badges & Certificates</h5>
+          <a href="/badges_certificates" class="btn btn-feature">Go</a>
+        </div>
+      </div>
+
+      <!-- Real-Time Job Market Insights -->
+      <div class="col-md-4 mb-4 mx-auto">
+        <div class="feature-card">
+          <i class="fas fa-globe"></i>
+          <h5>Real-Time Job Insights</h5>
+          <a href="/job-market" class="btn btn-feature">Go</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2025 Smart Competency Platform | All Rights Reserved</p>
+  </footer>
+
+  <!-- Font Awesome Icons & Bootstrap JS -->
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+

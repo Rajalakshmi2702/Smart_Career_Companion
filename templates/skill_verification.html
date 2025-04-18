@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skill Verification & Certification</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-4">
+    <h2>Skill Verification & Certification</h2>
+    <p>Below are your certificates. Scan the QR codes to verify your skills or share them on professional platforms.</p>
+    <div class="row">
+      {% for cert in certificates %}
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="{{ url_for('certificate_qr', certificate_id=cert.id) }}" class="card-img-top" alt="QR Code">
+          <div class="card-body">
+            <h5 class="card-title">{{ cert.file_name }}</h5>
+            <a href="{{ url_for('verify_certificate', certificate_id=cert.id) }}" class="btn btn-primary" target="_blank">View Verification</a>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <p>No certificates found. Please upload one.</p>
+      {% endfor %}
+    </div>
+  </div>
+  <a href="{{ url_for('badges_certificates') }}" class="btn btn-secondary mt-3">
+    <i class="fas fa-arrow-left"></i> Back to Badges & Certifications
+  </a>
+  
+</body>
+</html>

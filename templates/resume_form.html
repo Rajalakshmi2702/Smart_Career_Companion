@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Create Resume</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    .card {
+      margin-top: 50px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card p-4">
+      <h2 class="text-center mb-4">Resume Automation</h2>
+      <h4 class="text-center mb-4">You can download your generated resume from dashboard page!!</h4>
+      <form action="{{ url_for('create_resume') }}" method="POST">
+        <div class="mb-3">
+          <label class="form-label">Full Name:</label>
+          <input type="text" name="full_name" class="form-control" placeholder="Enter your full name" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email:</label>
+          <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Phone:</label>
+          <input type="text" name="phone" class="form-control" placeholder="Enter your phone number" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Professional Summary:</label>
+          <textarea name="summary" class="form-control" rows="3" placeholder="A brief summary about yourself" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Skills (comma-separated):</label>
+          <textarea name="skills" class="form-control" rows="2" placeholder="E.g., Python, SQL, Project Management" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Certifications:</label>
+          <textarea name="certifications" class="form-control" rows="2" placeholder="List your certifications"></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Achievements:</label>
+          <textarea name="achievements" class="form-control" rows="2" placeholder="List your achievements"></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Projects:</label>
+          <textarea name="projects" class="form-control" rows="2" placeholder="Describe your projects"></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Experience:</label>
+          <textarea name="experience" class="form-control" rows="3" placeholder="List your professional experience" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Education:</label>
+          <textarea name="education" class="form-control" rows="3" placeholder="Your degrees, institutions, and dates" required></textarea>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Generate Resume</button>
+        </div>
+        <div class="mt-4 text-center">
+          <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+      
+      </form>
+    </div>
+  </div>
+</body>
+</html>
+{% endblock %}

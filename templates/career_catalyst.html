@@ -1,0 +1,59 @@
+{% extends "base2.html" %}
+{% block content %}
+  <h1 class="animate__animated animate__fadeInDown">🚀 Career Catalyst</h1>
+  <form method="POST" action="{{ url_for('career_catalyst') }}">
+    <label for="default_query">Select a default query:</label>
+    <select id="default_query" name="default_query" onchange="toggleAdditionalField(this.value)">
+      <option value="">-- Choose an option --</option>
+      <option value="General career advice" {% if default_query == "General career advice" %}selected{% endif %}>General career advice</option>
+      <option value="Information on workshops" {% if default_query == "Information on workshops" %}selected{% endif %}>Information on workshops</option>
+      <option value="Virtual meets" {% if default_query == "Virtual meets" %}selected{% endif %}>Virtual meets</option>
+      <option value="The latest industry updates" {% if default_query == "The latest industry updates" %}selected{% endif %}>The latest industry updates</option>
+      <option value="Booming opportunities" {% if default_query == "Booming opportunities" %}selected{% endif %}>Booming opportunities</option>
+      
+    </select>
+    <br><br>
+
+    <label for="user_query">Or enter your own query:</label>
+    <textarea name="user_query" id="user_query" rows="4" cols="50" placeholder="Type your career query here..."></textarea>
+    <br><br>
+
+    <!-- Additional input field for queries that need extra details -->
+    <div id="additional_field" style="display: none;">
+      <label for="additional_input">Additional details:</label>
+      <textarea name="additional_input" id="additional_input" rows="2" cols="50" placeholder="e.g., specify the domain or area...">{{ additional_input }}</textarea>
+      <br><br>
+    </div>
+
+    <button type="submit" class="animate__animated animate__pulse">
+      <i class="fas fa-paper-plane"></i> Submit Query
+    </button>
+  </form>
+
+  {% if response %}
+    <h2>🎯 Response</h2>
+    <div class="response">
+      <p>{{ response|safe }}</p>
+    </div>
+  {% endif %}
+
+  <!-- JavaScript to show/hide the additional details field based on the selected option -->
+  <script>
+    function toggleAdditionalField(value) {
+      const additionalField = document.getElementById('additional_field');
+      // Options that require additional details.
+      const requiresDetail = ["Information on workshops", "Virtual meets", "The latest industry updates", "Booming opportunities"];
+      if (requiresDetail.includes(value)) {
+        additionalField.style.display = 'block';
+      } else {
+        additionalField.style.display = 'none';
+      }
+    }
+
+    // Run on page load in case a default option was pre-selected.
+    window.onload = function() {
+      const selectElement = document.getElementById('default_query');
+      toggleAdditionalField(selectElement.value);
+    };
+  </script>
+{% endblock %}

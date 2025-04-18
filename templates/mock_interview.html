@@ -1,0 +1,52 @@
+{% extends "base2.html" %}
+{% block content %}
+
+<!-- You can move these styles to your main CSS file if desired. -->
+<style>
+  .chat-window {
+    background: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+
+    /* Key properties to enable text wrapping: */
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .response-box pre {
+    /* Ensures interviewer's response also wraps within the box: */
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 0; /* optional styling for a cleaner look */
+  }
+</style>
+
+<div class="card">
+  <h1 class="title">Mock Interview Chat</h1>
+
+  <!-- Conversation Box -->
+  <div class="chat-window">
+    <pre>{{ conversation }}</pre>
+  </div>
+
+  <!-- User Answer Form -->
+  <form method="POST" action="{{ url_for('mock_interview') }}" class="form-section">
+    <label for="user_answer">Your Queries and Replies:</label>
+    <textarea name="user_answer" id="user_answer" rows="4" cols="50" 
+              placeholder="Type your answer here..."></textarea>
+    <input type="hidden" name="conversation" value="{{ conversation }}">
+    <br><br>
+    <button type="submit" class="submit-btn">Submit Answer</button>
+  </form>
+
+  <!-- Interviewer Response Box -->
+  {% if interview_response %}
+    <div class="response-box" style="margin-top: 20px;">
+      <h2>Interviewer Response</h2>
+      <pre>{{ interview_response|safe }}</pre>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

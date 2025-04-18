@@ -1,0 +1,29 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skill Gap Analysis</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h2>Skill Gap Analysis</h2>
+    {% if error %}
+      <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+    <form method="POST" action="{{ url_for('skill_gap_analysis') }}">
+      <div class="mb-3">
+        <label for="current_skills" class="form-label">Current Skills:</label>
+        <input type="text" name="current_skills" id="current_skills" class="form-control" placeholder="e.g., Python, SQL">
+      </div>
+      <div class="mb-3">
+        <label for="target_domain" class="form-label">Desired Domain/Role:</label>
+        <input type="text" name="target_domain" id="target_domain" class="form-control" placeholder="e.g., Data Analytics">
+      </div>
+      <button type="submit" class="btn btn-primary">Analyze & Get Recommendations</button>
+    </form>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

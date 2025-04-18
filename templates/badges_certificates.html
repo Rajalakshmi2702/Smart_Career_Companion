@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Badges & Certificates</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <!-- Simple Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Smart Competency Platform</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="container mt-4">
+    <h2>Badges & Certificates</h2>
+    <form method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="certificate" class="form-label">Upload Certificate/Badge (PDF, Image)</label>
+        <input type="file" name="certificate" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+    <hr>
+    <h3>Your Uploaded Certificates & Badges</h3>
+    <ul class="list-group">
+      {% for cert in certificates %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ cert.file_name }}
+        <div class="btn-group" role="group">
+          <a href="{{ url_for('certificate_qr', certificate_id=cert.id) }}" class="btn btn-sm btn-info" target="_blank">QR Code</a>
+          <a href="{{ url_for('verify_certificate_qr', certificate_id=cert.id) }}" class="btn btn-sm btn-secondary" target="_blank">Verify</a>
+          <a href="{{ url_for('download_certificate', certificate_id=cert.id) }}" class="btn btn-sm btn-success" target="_blank">Download</a>
+          <form action="{{ url_for('delete_certificate', certificate_id=cert.id) }}" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this certificate?');">Delete</button>
+          </form>
+        </div>
+      </li>
+      {% else %}
+      <li class="list-group-item">No certificates or badges uploaded yet.</li>
+      {% endfor %}
+    </ul>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary mt-3">
+      <i class="fas fa-arrow-left"></i> Back to Dashboard
+    </a>
+  </div>
+</body>
+</html>
