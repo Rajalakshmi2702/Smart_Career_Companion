@@ -41,6 +41,9 @@ pip install -r requirements.txt
 ```
 
 ### 4. Configure API Keys & Environment Variables
+You can simply edit the code by pasting your apikey for udemy api, gemini api, and rapidapi key for jsearch api and replace them approriately in the place of "your_api_key", instead of following the below step.
+
+if you are the following below step make change necessary changes in your code.
 Create a `.env` file in your project’s root directory:
 ```bash
 touch .env  # (type in cmd or terminal)
