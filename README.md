@@ -1,4 +1,4 @@
-💡 **Smart Career Companion**
+###💡 **Smart Career Companion**
 An AI-powered career guidance platform that helps users:
 
 ✅ Build ATS-friendly resumes
@@ -21,17 +21,17 @@ These instructions will help you run the Smart Career Companion app on your loca
 git clone https://github.com/YOUR-USERNAME/smart-career-companion.git
 cd smart-career-companion
 
-**2. Create a virtual environment**
+###2. Create a virtual environment
 python3 -m venv venv
-# macOS/Linux
+for macOS/Linux
 source venv/bin/activate
-# Windows (PowerShell)
+for Windows (PowerShell)
 venv\Scripts\Activate.ps1
 
-**3. Install dependencies**
+###3. Install dependencies
 pip install -r requirements.txt
 
-**4. Configure API Keys & Environment Variables**
+###4. Configure API Keys & Environment Variables
 Create a .env file in your project’s root directory:
 touch .env (type in cmd)
 Inside .env, add your private keys and configuration:
@@ -40,7 +40,7 @@ FLASK_ENV=development
 SECRET_KEY=your_flask_secret_key
 GEMINI_API_KEY=your_google_gemini_key
 RAPIDAPI_KEY=your_rapidapi_key
-💡 **Alternative:**
+###💡 Alternative:
 If you prefer, you can create a sample config file:
 instance/config.py.example
 And write:
@@ -49,17 +49,17 @@ SECRET_KEY = "your_secret_key"
 GEMINI_API_KEY = "your_google_gemini_key"
 RAPIDAPI_KEY = "your_rapidapi_key"
 
-**5. Initialize the database**
+###5. Initialize the database
 flask db init      # (only the very first time)
 flask db migrate
 flask db upgrade
 This will create your SQLite DB and apply all Alembic migrations.
 
-**6. Run the application**
+###6. Run the application
 flask run
 Point your browser to http://127.0.0.1:5000 to see the home page.
 
-🔍 **How to Explore the Features**
+###🔍 How to Explore the Features
 **Sign up / Log in**
 Create a new user account and authenticate.
 
@@ -92,24 +92,24 @@ Create a new user account and authenticate.
 **Mock Interviews**
 – Under Mock Interview, answer questions and receive feedback plus the next question in a chat flow.
 
-🛠️**Troubleshooting**
+###🛠️Troubleshooting
 Errors generating PDF: Ensure weasyprint and PyMuPDF are installed.
 
 **Database issues:** Delete instance/users.db (if present) and rerun migrations.
 
 **API errors:** Double‑check your .env API keys.
 
-🏷️ **License**
+###🏷️ **License**
 This project is licensed under the MIT License - see the LICENSE file for details.
 ![License Badge](https://img.shields.io/badge/License-MIT-green)
 
-👥 **Contributors**
+###👥 **Contributors**
 Thanks to the amazing contributors who helped build this project!
 [Rajalakshmi S] (https://github.com/Rajalakshmi2702)
 [Keertana Natarajan] (https://github.com/KeertanaNatarajan)
 [Neelaveni R] (https://github.com/Neelaveni1009)
 
-🧰 **Tech Stack**
+###🧰 **Tech Stack**
 **Backend:** Flask, SQLAlchemy
 **Frontend:** HTML, CSS, Bootstrap
 **Database:** SQLite
