@@ -68,3 +68,4 @@ zopfli==0.2.3.post1
 qrcode==7.3.1
 pyzbar==0.1.8
 google-generativeai==0.2.0
+python-dotenv
