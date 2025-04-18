@@ -16,9 +16,8 @@ Virtual Environment (venv) | For clean dependency management | python -m venv ve
 
 These instructions will help you run the Smart Career Companion app on your local machine.
 
-**1. Clone the repo**
+### 1. Clone the repo
 
-```bash
 git clone https://github.com/YOUR-USERNAME/smart-career-companion.git
 cd smart-career-companion
 
